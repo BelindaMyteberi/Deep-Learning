@@ -1,0 +1,20 @@
+#Because gradient computation can be error-prone, we often rely on libraries that incorporate automatic differentiation. In this
+#exercise, we make use of the PyTorch library. You are then asked to compute the error of the neural network within that framework,
+#which will then be automatically differentiated
+import torch
+import torch.nn as nn
+# 1. Get the data and parameters
+X,T = utils.getdata()
+W,B = utils.getparams()
+# 2. Convert to PyTorch objects
+X = torch.Tensor(X)
+T = torch.Tensor(T)
+W = [nn.Parameter(torch.Tensor(w)) for w in W]
+B = [nn.Parameter(torch.Tensor(b)) for b in B]
+# 3. Compute the forward pass and the error (TODO: replace by your code)
+import solution
+err = solution.exercise2(W,B,X,T)
+# 4. Apply automatic differentiation
+err.backward()
+# 5. Show error gradient w.r.t. the 1st weight parameter
+print(numpy.linalg.norm(W[0].grad[0,0]))
